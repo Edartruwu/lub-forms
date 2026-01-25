@@ -1,0 +1,707 @@
+/* ==========================================================================
+   Lub Forms - Embeddable Form Styles
+   ========================================================================== */
+
+/* CSS Custom Properties (Design Tokens) */
+.lub-form {
+  --lub-bg-color: #ffffff;
+  --lub-text-color: #1f2937;
+  --lub-primary-color: #3b82f6;
+  --lub-primary-hover: #2563eb;
+  --lub-border-color: #d1d5db;
+  --lub-error-color: #ef4444;
+  --lub-success-color: #10b981;
+  --lub-muted-color: #6b7280;
+  --lub-font-family:
+    system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --lub-font-size: 16px;
+  --lub-padding: 24px;
+  --lub-field-spacing: 16px;
+  --lub-border-radius: 6px;
+  --lub-input-height: 42px;
+  --lub-btn-bg: var(--lub-primary-color);
+  --lub-btn-text: #ffffff;
+  --lub-btn-radius: var(--lub-border-radius);
+  --lub-focus-ring: 0 0 0 3px rgba(59, 130, 246, 0.3);
+  --lub-transition: 150ms ease;
+}
+
+/* Base Form Container */
+.lub-form {
+  font-family: var(--lub-font-family);
+  font-size: var(--lub-font-size);
+  color: var(--lub-text-color);
+  background-color: var(--lub-bg-color);
+  padding: var(--lub-padding);
+  border-radius: var(--lub-border-radius);
+  box-sizing: border-box;
+  line-height: 1.5;
+}
+
+.lub-form *,
+.lub-form *::before,
+.lub-form *::after {
+  box-sizing: border-box;
+}
+
+/* Form Element */
+.lub-form__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--lub-field-spacing);
+}
+
+/* Header */
+.lub-form__header {
+  margin-bottom: var(--lub-field-spacing);
+}
+
+.lub-form__title {
+  font-size: 1.5em;
+  font-weight: 600;
+  margin: 0 0 0.5em;
+  color: var(--lub-text-color);
+}
+
+.lub-form__description {
+  margin: 0;
+  color: var(--lub-muted-color);
+}
+
+/* ==========================================================================
+   Fields Container
+   ========================================================================== */
+
+.lub-form__fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--lub-field-spacing);
+}
+
+.lub-form__fields--two_column {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--lub-field-spacing);
+}
+
+.lub-form__field-group {
+  display: contents;
+}
+
+.lub-form__field-group--row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--lub-field-spacing);
+  width: 100%;
+}
+
+/* Field Widths */
+.lub-form__field {
+  width: 100%;
+}
+
+.lub-form__field--full {
+  width: 100%;
+}
+
+.lub-form__field--half {
+  width: calc(50% - var(--lub-field-spacing) / 2);
+}
+
+.lub-form__field--third {
+  width: calc(33.333% - var(--lub-field-spacing) * 2 / 3);
+}
+
+.lub-form__field--quarter {
+  width: calc(25% - var(--lub-field-spacing) * 3 / 4);
+}
+
+@media (max-width: 640px) {
+  .lub-form__field--half,
+  .lub-form__field--third,
+  .lub-form__field--quarter {
+    width: 100%;
+  }
+}
+
+/* ==========================================================================
+   Field Wrapper
+   ========================================================================== */
+
+.lub-form__field-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* ==========================================================================
+   Labels
+   ========================================================================== */
+
+.lub-form__label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.875em;
+  font-weight: 500;
+  color: var(--lub-text-color);
+}
+
+.lub-form__required-indicator {
+  color: var(--lub-error-color);
+  font-weight: 400;
+}
+
+/* ==========================================================================
+   Inputs
+   ========================================================================== */
+
+.lub-form__input,
+.lub-form__textarea,
+.lub-form__select {
+  width: 100%;
+  padding: 10px 12px;
+  font-family: inherit;
+  font-size: 1em;
+  color: var(--lub-text-color);
+  background-color: var(--lub-bg-color);
+  border: 1px solid var(--lub-border-color);
+  border-radius: var(--lub-border-radius);
+  transition:
+    border-color var(--lub-transition),
+    box-shadow var(--lub-transition);
+  outline: none;
+}
+
+.lub-form__input {
+  height: var(--lub-input-height);
+}
+
+.lub-form__textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.lub-form__select {
+  height: var(--lub-input-height);
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' fill='%236b7280'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 36px;
+}
+
+.lub-form__input::placeholder,
+.lub-form__textarea::placeholder {
+  color: var(--lub-muted-color);
+}
+
+/* Focus States */
+.lub-form__input:focus,
+.lub-form__textarea:focus,
+.lub-form__select:focus {
+  border-color: var(--lub-primary-color);
+  box-shadow: var(--lub-focus-ring);
+}
+
+/* Error States */
+.lub-form__input--error,
+.lub-form__textarea--error,
+.lub-form__select--error {
+  border-color: var(--lub-error-color);
+}
+
+.lub-form__input--error:focus,
+.lub-form__textarea--error:focus,
+.lub-form__select--error:focus {
+  border-color: var(--lub-error-color);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.3);
+}
+
+/* ==========================================================================
+   Checkboxes & Radios
+   ========================================================================== */
+
+.lub-form__checkbox-group,
+.lub-form__radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.lub-form__checkbox-label,
+.lub-form__radio-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 0.9375em;
+}
+
+.lub-form__checkbox,
+.lub-form__radio {
+  width: 18px;
+  height: 18px;
+  margin: 2px 0 0;
+  flex-shrink: 0;
+  cursor: pointer;
+  accent-color: var(--lub-primary-color);
+}
+
+.lub-form__checkbox-text,
+.lub-form__radio-text {
+  color: var(--lub-text-color);
+}
+
+/* ==========================================================================
+   File Input
+   ========================================================================== */
+
+.lub-form__file-input {
+  width: 100%;
+  padding: 10px 12px;
+  font-family: inherit;
+  font-size: 0.9375em;
+  color: var(--lub-text-color);
+  background-color: var(--lub-bg-color);
+  border: 1px dashed var(--lub-border-color);
+  border-radius: var(--lub-border-radius);
+  cursor: pointer;
+  transition:
+    border-color var(--lub-transition),
+    background-color var(--lub-transition);
+}
+
+.lub-form__file-input:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.lub-form__file-input:focus {
+  border-color: var(--lub-primary-color);
+  outline: none;
+}
+
+.lub-form__file-hint {
+  margin: 4px 0 0;
+  font-size: 0.8125em;
+  color: var(--lub-muted-color);
+}
+
+/* ==========================================================================
+   Help Text & Errors
+   ========================================================================== */
+
+.lub-form__help-text {
+  margin: 0;
+  font-size: 0.8125em;
+  color: var(--lub-muted-color);
+}
+
+.lub-form__error {
+  margin: 0;
+  font-size: 0.8125em;
+  color: var(--lub-error-color);
+}
+
+/* ==========================================================================
+   HTML Content & Divider
+   ========================================================================== */
+
+.lub-form__html-content {
+  padding: 8px 0;
+  color: var(--lub-text-color);
+}
+
+.lub-form__html-content a {
+  color: var(--lub-primary-color);
+  text-decoration: underline;
+}
+
+.lub-form__divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+}
+
+.lub-form__divider-line {
+  flex: 1;
+  height: 1px;
+  background-color: var(--lub-border-color);
+  border: none;
+  margin: 0;
+}
+
+.lub-form__divider-label {
+  font-size: 0.875em;
+  color: var(--lub-muted-color);
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Consent Checkbox
+   ========================================================================== */
+
+.lub-form__consent {
+  padding-top: var(--lub-field-spacing);
+}
+
+.lub-form__consent-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.lub-form__consent-checkbox {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  flex-shrink: 0;
+  cursor: pointer;
+  accent-color: var(--lub-primary-color);
+}
+
+.lub-form__consent-text {
+  font-size: 0.875em;
+  color: var(--lub-text-color);
+}
+
+.lub-form__consent-text a {
+  color: var(--lub-primary-color);
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+.lub-form__actions {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: var(--lub-field-spacing);
+}
+
+.lub-form__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  font-family: inherit;
+  font-size: 1em;
+  font-weight: 500;
+  border: none;
+  border-radius: var(--lub-btn-radius);
+  cursor: pointer;
+  transition:
+    background-color var(--lub-transition),
+    opacity var(--lub-transition);
+}
+
+.lub-form__button--primary {
+  color: var(--lub-btn-text);
+  background-color: var(--lub-btn-bg);
+}
+
+.lub-form__button--primary:hover:not(:disabled) {
+  background-color: var(--lub-primary-hover);
+}
+
+.lub-form__button--secondary {
+  color: var(--lub-text-color);
+  background-color: transparent;
+  border: 1px solid var(--lub-border-color);
+}
+
+.lub-form__button--secondary:hover:not(:disabled) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.lub-form__button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.lub-form__button-loading {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ==========================================================================
+   Step Navigation
+   ========================================================================== */
+
+.lub-form__navigation {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: var(--lub-field-spacing);
+}
+
+.lub-form__navigation-spacer {
+  flex: 1;
+}
+
+/* ==========================================================================
+   Steps Indicator
+   ========================================================================== */
+
+.lub-form__steps {
+  padding-bottom: var(--lub-field-spacing);
+}
+
+.lub-form__steps-list {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 0;
+}
+
+.lub-form__step {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.lub-form__step:last-child {
+  flex: 0 0 auto;
+}
+
+.lub-form__step-indicator,
+.lub-form__step-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: 0.875em;
+  color: var(--lub-muted-color);
+}
+
+.lub-form__step-button {
+  cursor: pointer;
+}
+
+.lub-form__step-button:hover {
+  color: var(--lub-primary-color);
+}
+
+.lub-form__step-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: var(--lub-border-color);
+  color: var(--lub-muted-color);
+  font-weight: 500;
+  font-size: 0.8125em;
+}
+
+.lub-form__step--active .lub-form__step-number {
+  background-color: var(--lub-primary-color);
+  color: white;
+}
+
+.lub-form__step--completed .lub-form__step-number {
+  background-color: var(--lub-success-color);
+  color: white;
+}
+
+.lub-form__step-name {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .lub-form__step-name {
+    display: inline;
+  }
+}
+
+.lub-form__step--active .lub-form__step-indicator,
+.lub-form__step--active .lub-form__step-button {
+  color: var(--lub-text-color);
+}
+
+.lub-form__step-connector {
+  flex: 1;
+  height: 2px;
+  background-color: var(--lub-border-color);
+  margin: 0 8px;
+}
+
+.lub-form__step-connector--completed {
+  background-color: var(--lub-success-color);
+}
+
+.lub-form__check-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.lub-form__step-description {
+  margin: 12px 0 0;
+  font-size: 0.875em;
+  color: var(--lub-muted-color);
+}
+
+/* ==========================================================================
+   Loading Spinner
+   ========================================================================== */
+
+.lub-form__spinner {
+  width: 18px;
+  height: 18px;
+  animation: lub-spin 1s linear infinite;
+}
+
+.lub-form__spinner-track {
+  opacity: 0.25;
+}
+
+.lub-form__spinner-head {
+  opacity: 1;
+}
+
+@keyframes lub-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==========================================================================
+   Loading Skeleton
+   ========================================================================== */
+
+.lub-form--loading .lub-form__skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: var(--lub-field-spacing);
+}
+
+.lub-form__skeleton-title,
+.lub-form__skeleton-field,
+.lub-form__skeleton-button {
+  background: linear-gradient(
+    90deg,
+    var(--lub-border-color) 25%,
+    rgba(0, 0, 0, 0.05) 50%,
+    var(--lub-border-color) 75%
+  );
+  background-size: 200% 100%;
+  animation: lub-shimmer 1.5s infinite;
+  border-radius: var(--lub-border-radius);
+}
+
+.lub-form__skeleton-title {
+  height: 28px;
+  width: 60%;
+  margin-bottom: 8px;
+}
+
+.lub-form__skeleton-field {
+  height: var(--lub-input-height);
+}
+
+.lub-form__skeleton-field--short {
+  width: 50%;
+}
+
+.lub-form__skeleton-button {
+  height: 46px;
+  width: 120px;
+  margin-left: auto;
+}
+
+@keyframes lub-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ==========================================================================
+   Success State
+   ========================================================================== */
+
+.lub-form--success .lub-form__success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--lub-padding);
+  min-height: 200px;
+}
+
+.lub-form__success-icon {
+  width: 64px;
+  height: 64px;
+  color: var(--lub-success-color);
+  margin-bottom: 16px;
+}
+
+.lub-form__success-message {
+  font-size: 1.125em;
+  color: var(--lub-text-color);
+  margin: 0;
+}
+
+/* ==========================================================================
+   Error State
+   ========================================================================== */
+
+.lub-form--error .lub-form__error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--lub-padding);
+  min-height: 150px;
+}
+
+.lub-form__error-message {
+  font-size: 1em;
+  color: var(--lub-error-color);
+  margin: 0;
+}
+
+/* ==========================================================================
+   reCAPTCHA
+   ========================================================================== */
+
+.lub-form__recaptcha {
+  display: flex;
+  justify-content: flex-start;
+  padding: 8px 0;
+}
+
+.lub-form__recaptcha-widget {
+  transform-origin: left top;
+}
+
+/* ==========================================================================
+   Dark Theme Override
+   ========================================================================== */
+
+.lub-form[data-theme="dark"] {
+  --lub-bg-color: #1f2937;
+  --lub-text-color: #f9fafb;
+  --lub-border-color: #4b5563;
+  --lub-muted-color: #9ca3af;
+}

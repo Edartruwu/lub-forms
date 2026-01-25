@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lub Forms - Demo</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family:
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          "Helvetica Neue",
+          Arial,
+          sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f3f4f6;
+        min-height: 100vh;
+      }
+
+      .demo-header {
+        background-color: #1f2937;
+        color: white;
+        padding: 24px;
+        text-align: center;
+      }
+
+      .demo-header h1 {
+        margin: 0 0 8px;
+        font-size: 1.75rem;
+      }
+
+      .demo-header p {
+        margin: 0;
+        opacity: 0.8;
+      }
+
+      .demo-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 32px 16px;
+      }
+
+      .demo-section {
+        margin-bottom: 48px;
+      }
+
+      .demo-section h2 {
+        font-size: 1.25rem;
+        margin: 0 0 16px;
+        color: #1f2937;
+      }
+
+      .demo-form-container {
+        background-color: white;
+        border-radius: 12px;
+        box-shadow:
+          0 4px 6px -1px rgba(0, 0, 0, 0.1),
+          0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        overflow: hidden;
+      }
+
+      .demo-tabs {
+        display: flex;
+        border-bottom: 1px solid #e5e7eb;
+      }
+
+      .demo-tab {
+        flex: 1;
+        padding: 12px 24px;
+        border: none;
+        background: none;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: #6b7280;
+        cursor: pointer;
+        transition:
+          color 0.15s,
+          background-color 0.15s;
+      }
+
+      .demo-tab:hover {
+        background-color: #f9fafb;
+      }
+
+      .demo-tab.active {
+        color: #3b82f6;
+        border-bottom: 2px solid #3b82f6;
+        margin-bottom: -1px;
+      }
+
+      .demo-panel {
+        display: none;
+        padding: 24px;
+      }
+
+      .demo-panel.active {
+        display: block;
+      }
+
+      .demo-code {
+        background-color: #1f2937;
+        color: #f9fafb;
+        padding: 16px;
+        border-radius: 8px;
+        font-family: "Monaco", "Menlo", monospace;
+        font-size: 0.8125rem;
+        overflow-x: auto;
+        white-space: pre;
+        line-height: 1.6;
+      }
+
+      .demo-code .comment {
+        color: #6b7280;
+      }
+
+      .demo-code .tag {
+        color: #60a5fa;
+      }
+
+      .demo-code .attr {
+        color: #a78bfa;
+      }
+
+      .demo-code .string {
+        color: #34d399;
+      }
+
+      .demo-mock-notice {
+        background-color: #fef3c7;
+        border: 1px solid #f59e0b;
+        border-radius: 8px;
+        padding: 12px 16px;
+        margin-bottom: 16px;
+        font-size: 0.875rem;
+        color: #92400e;
+      }
+
+      #live-form-container {
+        min-height: 400px;
+      }
+
+      .demo-success {
+        background-color: #d1fae5;
+        border: 1px solid #10b981;
+        border-radius: 8px;
+        padding: 16px;
+        color: #065f46;
+        display: none;
+      }
+
+      .demo-error {
+        background-color: #fee2e2;
+        border: 1px solid #ef4444;
+        border-radius: 8px;
+        padding: 16px;
+        color: #991b1b;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="demo-header">
+      <h1>Lub Forms</h1>
+      <p>Embeddable form library for Lub CRM</p>
+    </div>
+
+    <div class="demo-container">
+      <!-- Live Demo Section -->
+      <div class="demo-section">
+        <h2>Live Demo</h2>
+        <div class="demo-form-container">
+          <div class="demo-tabs">
+            <button class="demo-tab active" data-panel="live">Live Form</button>
+            <button class="demo-tab" data-panel="code">Code</button>
+          </div>
+
+          <div class="demo-panel active" data-panel="live">
+            <div class="demo-mock-notice">
+              <strong>Note:</strong> This is a mock demo. In production, the
+              form would fetch from your API endpoint.
+            </div>
+            <div id="live-form-container">
+              <!-- Form renders here -->
+            </div>
+            <div id="demo-success" class="demo-success">
+              Form submitted successfully!
+            </div>
+            <div id="demo-error" class="demo-error">An error occurred.</div>
+          </div>
+
+          <div class="demo-panel" data-panel="code">
+            <div class="demo-code">
+              <span class="comment"
+                >&lt;!-- Script tag embedding (standalone) --&gt;</span
+              >
+              <span class="tag">&lt;script</span>
+              <span class="attr">src</span>=<span class="string"
+                >"https://forms.lub.com/v1/lub-forms.standalone.js"</span
+              ><span class="tag">&gt;&lt;/script&gt;</span>
+              <span class="tag">&lt;link</span>
+              <span class="attr">rel</span>=<span class="string"
+                >"stylesheet"</span
+              >
+              <span class="attr">href</span>=<span class="string"
+                >"https://forms.lub.com/v1/lub-forms.css"</span
+              ><span class="tag">&gt;</span>
+
+              <span class="comment"
+                >&lt;!-- Auto-mount via data attributes --&gt;</span
+              >
+              <span class="tag">&lt;div</span>
+              <span class="attr">data-lub-form-id</span>=<span class="string"
+                >"abc123"</span
+              >
+              <span class="attr">data-lub-base-url</span>=<span class="string"
+                >"https://api.lub.com"</span
+              >
+              <span class="tag">&gt;&lt;/div&gt;</span>
+
+              <span class="comment"
+                >&lt;!-- Or manual render with callbacks --&gt;</span
+              >
+              <span class="tag">&lt;div</span>
+              <span class="attr">id</span>=<span class="string">"my-form"</span
+              ><span class="tag">&gt;&lt;/div&gt;</span>
+              <span class="tag">&lt;script&gt;</span>
+              LubForms.render('abc123', 'my-form', { baseUrl:
+              'https://api.lub.com', onSuccess: (data) => {
+              console.log('Success!', data); window.location = '/thank-you'; },
+              onError: (err) => { console.error('Error:', err); } });
+              <span class="tag">&lt;/script&gt;</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- React Usage Section -->
+      <div class="demo-section">
+        <h2>React Component Usage</h2>
+        <div class="demo-form-container">
+          <div class="demo-panel active">
+            <div class="demo-code">
+              <span class="comment">// Import the component and styles</span>
+              import { LubForm } from '@lub/forms'; import '@lub/forms/styles';
+              function MyPage() { return (
+              <span class="tag">&lt;LubForm</span>
+              <span class="attr">formId</span>=<span class="string"
+                >"abc123"</span
+              >
+              <span class="attr">baseUrl</span>=<span class="string"
+                >"https://api.lub.com"</span
+              >
+              <span class="attr">onSuccess</span>={(data) => {
+              toast.success('Form submitted!'); }}
+              <span class="attr">onError</span>={(err) => {
+              toast.error(err.message); }}
+              <span class="tag">/&gt;</span>
+              ); }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module">
+      // Tab switching
+      document.querySelectorAll(".demo-tab").forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const panelName = tab.dataset.panel;
+          const container = tab.closest(".demo-form-container");
+
+          container
+            .querySelectorAll(".demo-tab")
+            .forEach((t) => t.classList.remove("active"));
+          container
+            .querySelectorAll(".demo-panel")
+            .forEach((p) => p.classList.remove("active"));
+
+          tab.classList.add("active");
+          container
+            .querySelector(`.demo-panel[data-panel="${panelName}"]`)
+            .classList.add("active");
+        });
+      });
+
+      // Mock form rendering for demo
+      import { LubForm } from "/src/index.ts";
+      import { createElement } from "react";
+      import { createRoot } from "react-dom/client";
+      import "/src/styles/index.css";
+
+      // Mock form data
+      const mockForm = {
+        id: "demo-form",
+        name: "Contact Us",
+        description: "Fill out the form below and we'll get back to you.",
+        fields: [
+          {
+            id: "f1",
+            field_type: "text",
+            name: "first_name",
+            label: "First Name",
+            placeholder: "John",
+            required: true,
+            width: "half",
+            is_active: true,
+            display_order: 0,
+          },
+          {
+            id: "f2",
+            field_type: "text",
+            name: "last_name",
+            label: "Last Name",
+            placeholder: "Doe",
+            required: true,
+            width: "half",
+            is_active: true,
+            display_order: 1,
+          },
+          {
+            id: "f3",
+            field_type: "email",
+            name: "email",
+            label: "Email Address",
+            placeholder: "john@example.com",
+            required: true,
+            width: "full",
+            is_active: true,
+            display_order: 2,
+          },
+          {
+            id: "f4",
+            field_type: "phone",
+            name: "phone",
+            label: "Phone Number",
+            placeholder: "+1 (555) 000-0000",
+            required: false,
+            width: "full",
+            is_active: true,
+            display_order: 3,
+          },
+          {
+            id: "f5",
+            field_type: "select",
+            name: "interest",
+            label: "What are you interested in?",
+            placeholder: "Select an option...",
+            required: true,
+            width: "full",
+            is_active: true,
+            display_order: 4,
+            options: {
+              options: [
+                { value: "sales", label: "Sales inquiry" },
+                { value: "support", label: "Technical support" },
+                { value: "partnership", label: "Partnership" },
+                { value: "other", label: "Other" },
+              ],
+            },
+          },
+          {
+            id: "f6",
+            field_type: "textarea",
+            name: "message",
+            label: "Message",
+            placeholder: "Tell us more about your inquiry...",
+            required: true,
+            width: "full",
+            is_active: true,
+            display_order: 5,
+          },
+        ],
+        design: {
+          layout: "vertical",
+          theme: "light",
+          primary_color: "#3b82f6",
+          button_style: {
+            full_width: true,
+          },
+        },
+        settings: {
+          submit_button_text: "Send Message",
+          success_message: "Thank you! We'll be in touch soon.",
+          show_consent_checkbox: true,
+          consent_text:
+            'I agree to the <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a>.',
+        },
+        is_multi_step: false,
+        steps: [],
+      };
+
+      // Simple demo form component that doesn't need API
+      function DemoForm() {
+        const [state, setState] = window.React.useState("form");
+
+        if (state === "success") {
+          return createElement(
+            "div",
+            {
+              className: "lub-form lub-form--success",
+              style: { "--lub-primary-color": "#3b82f6" },
+            },
+            createElement(
+              "div",
+              { className: "lub-form__success" },
+              createElement(
+                "svg",
+                {
+                  className: "lub-form__success-icon",
+                  viewBox: "0 0 24 24",
+                  fill: "none",
+                  stroke: "currentColor",
+                  strokeWidth: "2",
+                },
+                createElement("path", {
+                  d: "M22 11.08V12a10 10 0 1 1-5.93-9.14",
+                }),
+                createElement("polyline", { points: "22,4 12,14.01 9,11.01" }),
+              ),
+              createElement(
+                "p",
+                { className: "lub-form__success-message" },
+                mockForm.settings.success_message,
+              ),
+            ),
+          );
+        }
+
+        // For demo, just use the actual LubForm with a mock baseUrl
+        // In a real scenario, this would fetch from the actual API
+        return createElement(LubForm, {
+          formId: "demo",
+          baseUrl: "", // Empty for demo - will show error state
+          onSuccess: () => setState("success"),
+          onError: () => {
+            // For demo purposes, show a simplified mock form instead
+          },
+        });
+      }
+
+      // For the demo, we'll show a static form since we don't have a real API
+      const container = document.getElementById("live-form-container");
+      container.innerHTML = `
+        <div class="lub-form" style="--lub-primary-color: #3b82f6;">
+          <form class="lub-form__form">
+            <div class="lub-form__header">
+              <h2 class="lub-form__title">Contact Us</h2>
+              <p class="lub-form__description">Fill out the form below and we'll get back to you.</p>
+            </div>
+            <div class="lub-form__fields lub-form__fields--two_column">
+              <div class="lub-form__field lub-form__field--half">
+                <div class="lub-form__field-wrapper">
+                  <label class="lub-form__label lub-form__label--required">First Name<span class="lub-form__required-indicator">*</span></label>
+                  <input class="lub-form__input" placeholder="John" />
+                </div>
+              </div>
+              <div class="lub-form__field lub-form__field--half">
+                <div class="lub-form__field-wrapper">
+                  <label class="lub-form__label lub-form__label--required">Last Name<span class="lub-form__required-indicator">*</span></label>
+                  <input class="lub-form__input" placeholder="Doe" />
+                </div>
+              </div>
+              <div class="lub-form__field lub-form__field--full">
+                <div class="lub-form__field-wrapper">
+                  <label class="lub-form__label lub-form__label--required">Email Address<span class="lub-form__required-indicator">*</span></label>
+                  <input class="lub-form__input" type="email" placeholder="john@example.com" />
+                </div>
+              </div>
+              <div class="lub-form__field lub-form__field--full">
+                <div class="lub-form__field-wrapper">
+                  <label class="lub-form__label">Phone Number</label>
+                  <input class="lub-form__input" type="tel" placeholder="+1 (555) 000-0000" />
+                </div>
+              </div>
+              <div class="lub-form__field lub-form__field--full">
+                <div class="lub-form__field-wrapper">
+                  <label class="lub-form__label lub-form__label--required">What are you interested in?<span class="lub-form__required-indicator">*</span></label>
+                  <select class="lub-form__select">
+                    <option value="">Select an option...</option>
+                    <option value="sales">Sales inquiry</option>
+                    <option value="support">Technical support</option>
+                    <option value="partnership">Partnership</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+              </div>
+              <div class="lub-form__field lub-form__field--full">
+                <div class="lub-form__field-wrapper">
+                  <label class="lub-form__label lub-form__label--required">Message<span class="lub-form__required-indicator">*</span></label>
+                  <textarea class="lub-form__textarea" placeholder="Tell us more about your inquiry..." rows="4"></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="lub-form__consent">
+              <label class="lub-form__consent-label">
+                <input type="checkbox" class="lub-form__consent-checkbox" />
+                <span class="lub-form__consent-text">I agree to the <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a>.</span>
+              </label>
+            </div>
+            <div class="lub-form__actions">
+              <button type="button" class="lub-form__button lub-form__button--primary" style="width: 100%;" onclick="handleDemoSubmit()">Send Message</button>
+            </div>
+          </form>
+        </div>
+      `;
+
+      // Handle demo form submission
+      window.handleDemoSubmit = function () {
+        const successEl = document.getElementById("demo-success");
+        const formContainer = document.getElementById("live-form-container");
+        formContainer.querySelector(".lub-form").style.display = "none";
+        successEl.style.display = "block";
+      };
+    </script>
+  </body>
+</html>

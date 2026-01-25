@@ -1,17 +1,45 @@
 {
-  "name": "lub-forms",
-  "private": true,
-  "version": "0.0.0",
+  "name": "@lub/forms",
+  "version": "1.0.0",
   "type": "module",
+  "description": "Embeddable form library for Lub CRM",
+  "main": "./dist/lub-forms.umd.js",
+  "module": "./dist/lub-forms.es.js",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./dist/lub-forms.es.js",
+      "require": "./dist/lub-forms.umd.js"
+    },
+    "./styles": "./dist/lub-forms.css"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": [
+    "*.css"
+  ],
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "bun run build:lib && bun run build:umd && bun run build:standalone && bun run build:clean",
+    "build:clean": "rm -f dist/forms.css dist/vite.svg",
+    "build:lib": "vite build --config vite.lib.config.ts",
+    "build:umd": "vite build --config vite.umd.config.ts",
+    "build:standalone": "vite build --config vite.standalone.config.ts",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "@hookform/resolvers": "^3.9.0",
+    "react-hook-form": "^7.53.0",
+    "zod": "^3.23.0"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
@@ -24,8 +52,17 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.46.4",
     "vite": "^7.2.4"
-  }
+  },
+  "keywords": [
+    "forms",
+    "embed",
+    "crm",
+    "lub"
+  ],
+  "license": "MIT"
 }
