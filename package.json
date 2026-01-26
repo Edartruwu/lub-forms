@@ -1,5 +1,5 @@
 {
-  "name": "@lub/forms",
+  "name": "@lub-crm/forms",
   "version": "1.0.0",
   "type": "module",
   "description": "Embeddable form library for Lub CRM",
@@ -23,8 +23,9 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "bun run build:lib && bun run build:umd && bun run build:standalone && bun run build:clean",
+    "build": "bun run build:lib && bun run build:umd && bun run build:standalone && bun run build:clean && bun run build:copy-public",
     "build:clean": "rm -f dist/forms.css dist/vite.svg",
+    "build:copy-public": "cp -r public/* dist/",
     "build:lib": "vite build --config vite.lib.config.ts",
     "build:umd": "vite build --config vite.umd.config.ts",
     "build:standalone": "vite build --config vite.standalone.config.ts",

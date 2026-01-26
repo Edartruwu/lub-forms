@@ -54,7 +54,7 @@ function ContactPage() {
   return (
     <LubForm
       formId="abc123"
-      baseUrl="https://api.lub.com"
+      baseUrl="https://api.lub.marketing"
       onSuccess={(data) => {
         console.log("Submission ID:", data.submission_id);
         window.location.href = "/thank-you";
@@ -74,7 +74,7 @@ Forms automatically mount to elements with `data-lub-form-id`:
 ```html
 <div
   data-lub-form-id="abc123"
-  data-lub-base-url="https://api.lub.com"
+  data-lub-base-url="https://api.lub.marketing"
   data-lub-class="my-custom-class"
   data-lub-on-success="handleSuccess"
   data-lub-on-error="handleError"
@@ -97,7 +97,7 @@ Forms automatically mount to elements with `data-lub-form-id`:
 
 <script>
   LubForms.render("abc123", "my-form", {
-    baseUrl: "https://api.lub.com",
+    baseUrl: "https://api.lub.marketing",
     onSuccess: (data) => {
       console.log("Success!", data);
     },
@@ -237,7 +237,7 @@ Use the client directly for custom integrations:
 ```tsx
 import { LubFormsClient } from "@lub/forms";
 
-const client = new LubFormsClient("https://api.lub.com");
+const client = new LubFormsClient("https://api.lub.marketing");
 
 // Fetch form definition
 const form = await client.getForm("abc123");

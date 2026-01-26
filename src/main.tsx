@@ -10,7 +10,7 @@ import "./styles/index.css";
 
 // Mock API response for development
 const MOCK_FORM_ID = "demo-123";
-const MOCK_BASE_URL = "http://localhost:8080"; // Your local API server
+const MOCK_BASE_URL = "https://api.lub.marketing";
 
 function App() {
   return (
