@@ -4,14 +4,14 @@
  * Usage:
  *
  * <!-- Auto-mount via data attributes -->
- * <script src="https://forms.lub.com/v1/lub-forms.standalone.js"></script>
- * <link rel="stylesheet" href="https://forms.lub.com/v1/lub-forms.css">
- * <div data-lub-form-id="abc123" data-lub-base-url="https://api.lub.com"></div>
+ * <script src="https://forms.lub.marketing/lub-forms.standalone.js"></script>
+ * <link rel="stylesheet" href="https://forms.lub.marketing/lub-forms.css">
+ * <div data-lub-form-id="abc123" data-lub-base-url="https://api.lub.marketing"></div>
  *
  * <!-- Manual render -->
  * <script>
  *   LubForms.render('abc123', 'container-id', {
- *     baseUrl: 'https://api.lub.com',
+ *     baseUrl: 'https://api.lub.marketing',
  *     onSuccess: (data) => console.log('Success!', data),
  *     onError: (err) => console.error('Error:', err),
  *   });

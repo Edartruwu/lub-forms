@@ -28,7 +28,7 @@ bun add @lub/forms
 No build step required. Includes React and all dependencies:
 
 ```html
-<script src="https://forms.lub.com/v1/lub-forms.standalone.js"></script>
+<script src="https://forms.lub.marketing/v1/lub-forms.standalone.js"></script>
 ```
 
 ### Script Tag (UMD)
@@ -38,8 +38,8 @@ For pages that already have React loaded:
 ```html
 <script src="https://unpkg.com/react@19/umd/react.production.min.js"></script>
 <script src="https://unpkg.com/react-dom@19/umd/react-dom.production.min.js"></script>
-<script src="https://forms.lub.com/v1/lub-forms.umd.js"></script>
-<link rel="stylesheet" href="https://forms.lub.com/v1/lub-forms.css" />
+<script src="https://forms.lub.marketing/v1/lub-forms.umd.js"></script>
+<link rel="stylesheet" href="https://forms.lub.marketing/v1/lub-forms.css" />
 ```
 
 ## Usage
