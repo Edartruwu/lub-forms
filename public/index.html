@@ -1,68 +1,83 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lub Forms - Embeddable Forms</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: system-ui, -apple-system, sans-serif;
-      background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%);
-      min-height: 100vh;
-      color: #f8fafc;
-    }
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 60px 24px;
-    }
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 16px;
-    }
-    .subtitle {
-      font-size: 1.25rem;
-      opacity: 0.8;
-      margin-bottom: 48px;
-    }
-    .card {
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 12px;
-      padding: 24px;
-      margin-bottom: 24px;
-    }
-    .card h2 {
-      font-size: 1.125rem;
-      margin-bottom: 16px;
-      color: #60a5fa;
-    }
-    pre {
-      background: #0f172a;
-      border-radius: 8px;
-      padding: 16px;
-      overflow-x: auto;
-      font-size: 0.875rem;
-      line-height: 1.6;
-    }
-    code {
-      font-family: 'Monaco', 'Menlo', monospace;
-    }
-    .highlight { color: #60a5fa; }
-    .string { color: #34d399; }
-    .comment { color: #64748b; }
-    a { color: #60a5fa; }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h1>Lub Forms</h1>
-    <p class="subtitle">Embeddable form library for Lub CRM</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lub Forms - Embeddable Forms</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family:
+          system-ui,
+          -apple-system,
+          sans-serif;
+        background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%);
+        min-height: 100vh;
+        color: #f8fafc;
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 60px 24px;
+      }
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 16px;
+      }
+      .subtitle {
+        font-size: 1.25rem;
+        opacity: 0.8;
+        margin-bottom: 48px;
+      }
+      .card {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 12px;
+        padding: 24px;
+        margin-bottom: 24px;
+      }
+      .card h2 {
+        font-size: 1.125rem;
+        margin-bottom: 16px;
+        color: #60a5fa;
+      }
+      pre {
+        background: #0f172a;
+        border-radius: 8px;
+        padding: 16px;
+        overflow-x: auto;
+        font-size: 0.875rem;
+        line-height: 1.6;
+      }
+      code {
+        font-family: "Monaco", "Menlo", monospace;
+      }
+      .highlight {
+        color: #60a5fa;
+      }
+      .string {
+        color: #34d399;
+      }
+      .comment {
+        color: #64748b;
+      }
+      a {
+        color: #60a5fa;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Lub Forms</h1>
+      <p class="subtitle">Embeddable form library for Lub CRM</p>
 
-    <div class="card">
-      <h2>Quick Start - Standalone Script</h2>
-      <pre><code><span class="comment">&lt;!-- Add this to your HTML --&gt;</span>
+      <div class="card">
+        <h2>Quick Start - Standalone Script</h2>
+        <pre><code><span class="comment">&lt;!-- Add this to your HTML --&gt;</span>
 <span class="highlight">&lt;script</span> src="<span class="string">https://forms.lub.marketing/lub-forms.standalone.js</span>"<span class="highlight">&gt;&lt;/script&gt;</span>
 
 <span class="comment">&lt;!-- Add a container with your form ID --&gt;</span>
@@ -70,11 +85,11 @@
   data-lub-form-id="<span class="string">YOUR_FORM_ID</span>"
   data-lub-base-url="<span class="string">https://api.lub.marketing</span>"
 <span class="highlight">&gt;&lt;/div&gt;</span></code></pre>
-    </div>
+      </div>
 
-    <div class="card">
-      <h2>Manual Render with Callbacks</h2>
-      <pre><code><span class="highlight">&lt;div</span> id="<span class="string">my-form</span>"<span class="highlight">&gt;&lt;/div&gt;</span>
+      <div class="card">
+        <h2>Manual Render with Callbacks</h2>
+        <pre><code><span class="highlight">&lt;div</span> id="<span class="string">my-form</span>"<span class="highlight">&gt;&lt;/div&gt;</span>
 
 <span class="highlight">&lt;script&gt;</span>
   LubForms.render('<span class="string">YOUR_FORM_ID</span>', '<span class="string">my-form</span>', {
@@ -88,17 +103,17 @@
     }
   });
 <span class="highlight">&lt;/script&gt;</span></code></pre>
-    </div>
+      </div>
 
-    <div class="card">
-      <h2>Available Files</h2>
-      <pre><code><span class="comment"># Standalone (includes React)</span>
+      <div class="card">
+        <h2>Available Files</h2>
+        <pre><code><span class="comment"># Standalone (includes React)</span>
 https://forms.lub.marketing/lub-forms.standalone.js
 
 <span class="comment"># UMD (requires React on page)</span>
 https://forms.lub.marketing/lub-forms.umd.js
 https://forms.lub.marketing/lub-forms.css</code></pre>
+      </div>
     </div>
-  </div>
-</body>
+  </body>
 </html>

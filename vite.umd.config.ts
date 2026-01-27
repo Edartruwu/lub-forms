@@ -21,12 +21,22 @@ export default defineConfig({
     outDir: "dist",
     emptyOutDir: false,
     rollupOptions: {
-      external: ["react", "react-dom", "react/jsx-runtime"],
+      external: [
+        "react",
+        "react-dom",
+        "react/jsx-runtime",
+        "react-hook-form",
+        "@hookform/resolvers",
+        "@hookform/resolvers/zod",
+      ],
       output: {
         globals: {
           react: "React",
           "react-dom": "ReactDOM",
           "react/jsx-runtime": "jsxRuntime",
+          "react-hook-form": "ReactHookForm",
+          "@hookform/resolvers": "HookformResolvers",
+          "@hookform/resolvers/zod": "HookformResolversZod",
         },
         exports: "named",
         assetFileNames: "lub-forms.[ext]",
