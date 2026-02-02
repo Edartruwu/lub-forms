@@ -1,4 +1,4 @@
-# @lub/forms
+# @lub-crm/forms
 
 Embeddable form library for Lub CRM. Render dynamic forms that integrate with Lub CRM for lead capture and data collection.
 
@@ -18,9 +18,9 @@ Embeddable form library for Lub CRM. Render dynamic forms that integrate with Lu
 ### NPM Package (React Apps)
 
 ```bash
-npm install @lub/forms
+npm install @lub-crm/forms
 # or
-bun add @lub/forms
+bun add @lub-crm/forms
 ```
 
 ### Script Tag (Standalone)
@@ -47,8 +47,8 @@ For pages that already have React loaded:
 ### React Component
 
 ```tsx
-import { LubForm } from "@lub/forms";
-import "@lub/forms/styles";
+import { LubForm } from "@lub-crm/forms";
+import "@lub-crm/forms/styles";
 
 function ContactPage() {
   return (
@@ -215,7 +215,7 @@ conditional_logic: {
 Register custom field types for advanced use cases:
 
 ```tsx
-import { registerFieldComponent } from "@lub/forms";
+import { registerFieldComponent } from "@lub-crm/forms";
 
 registerFieldComponent("rating", ({ field, register, error }) => (
   <div className="rating-field">
@@ -235,7 +235,7 @@ registerFieldComponent("rating", ({ field, register, error }) => (
 Use the client directly for custom integrations:
 
 ```tsx
-import { LubFormsClient } from "@lub/forms";
+import { LubFormsClient } from "@lub-crm/forms";
 
 const client = new LubFormsClient("https://api.lub.marketing");
 
